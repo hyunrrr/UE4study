@@ -1,0 +1,44 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "GameFramework/Pawn.h"
+#include "MyPawn.generated.h"
+
+UCLASS()
+class HOWTO_PLAYERCAMERA_API AMyPawn : public APawn
+{
+	GENERATED_BODY()
+
+public:
+	// Sets default values for this pawn's properties
+	AMyPawn();
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
+public:	
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
+	// Called to bind functionality to input
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	// 기본적인 컴포넌트 몇가지를 만듦
+	// UPROPERTY가 붙어있어 언리얼 엔진
+	UPROPERTY(EditAnywhere)
+	USceneComponent* OurVisibleComponent;
+
+
+	//입력 함수
+	void Move_XAxis(float AxisValue);
+	void Move_YAxis(float AxisValue);
+	void StartGrowing();
+	void StopGrowing();
+
+	//입력 함수
+	FVector CurrentVelocity;
+	bool bGrowing;
+};
